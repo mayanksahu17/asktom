@@ -5,8 +5,8 @@ export interface user extends Document{
     email : string,
     password : string,
 
-    mobileNumber : Number,
-    courses : [Number]
+    mobileNumber : number,
+    courses : number
 
 }
 

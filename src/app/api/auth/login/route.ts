@@ -1,9 +1,10 @@
 import dbConnect from '@/lib/dbConnect';
 import bcryptjs from 'bcryptjs';
-import { User } from '@/model/User';
+import { User } from '@/models/User';
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 import cookie from 'cookie';
+
 
 const MAX_FAILED_ATTEMPTS = 5;
 const LOCK_TIME = 30 * 60 * 1000; // 30 minutes
@@ -28,7 +29,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       return NextResponse.json({ success: false, message: `You don't have any account. Please create one` }, { status: 404 });
     }
 
-    if (user.isLocked) {
+    if (user.isLocked && user.lockUntil && Date.now() > user.lockUntil) {
+
       if (Date.now() > user.lockUntil) {
         user.isLocked = false;
         user.loginAttempts = 0;
