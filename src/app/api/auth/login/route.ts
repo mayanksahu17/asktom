@@ -1,6 +1,6 @@
 import dbConnect from '@/lib/dbConnect';
 import bcryptjs from 'bcryptjs';
-import { User } from '@/model/User';
+import { User } from '@/models/User';
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 import cookie from 'cookie';
@@ -28,30 +28,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
       return NextResponse.json({ success: false, message: `You don't have any account. Please create one` }, { status: 404 });
     }
 
-    if (user.isLocked) {
-      if (Date.now() > user.lockUntil) {
-        user.isLocked = false;
-        user.loginAttempts = 0;
-        await user.save();
-      } else {
-        return NextResponse.json({ success: false, message: 'Account locked. Please try again after 30 minutes' }, { status: 401 });
-      }
-    }
+ 
 
     const isPasswordValid = await bcryptjs.compare(password, user.password);
 
-    if (!isPasswordValid) {
-      user.loginAttempts += 1;
-      if (user.loginAttempts >= MAX_FAILED_ATTEMPTS) {
-        user.isLocked = true;
-        user.lockUntil = Date.now() + LOCK_TIME;
-      }
-      await user.save();
-      return NextResponse.json({ success: false, message: 'Invalid username/email or password.' }, { status: 401 });
-    }
-
-    user.loginAttempts = 0;
-    user.isLocked = false;
+  
     await user.save();
 
     const token = jwt.sign(
