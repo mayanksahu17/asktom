@@ -57,7 +57,7 @@ export function SignInForm() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button type="submit" className="w-full">Sign In</Button>
+          <Button type="submit" onClick={()=>{router.push('/admin/dashboard')}} className="w-full">Sign In</Button>
         </CardFooter>
       </form>
     </Card>
