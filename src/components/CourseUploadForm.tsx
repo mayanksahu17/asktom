@@ -17,7 +17,7 @@ import { toast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { Url } from 'next/dist/shared/lib/router/router';
 
-const [url , setUrl ] = useState("")
+// const [url , setUrl ] = useState("")
 // Interface for Course data
 interface Course {
   _id: string;
@@ -116,14 +116,7 @@ export default function CourseManagement(): JSX.Element {
         [name]: value
       }));
     }
-    useEffect(()=>{
-      
-      setFormData(prev => ({
-        ...prev,
-        thumbNail: url
-      }))
-
-    },[url])
+   
 
   };
 
@@ -328,18 +321,18 @@ export default function CourseManagement(): JSX.Element {
                     required
                   />
                 </div>
-                  {/* <div className="space-y-2">
+                   <div className="space-y-2">
                     <Label htmlFor="thumbNail">Course Thumbnail</Label>
                     <Input
-                      type="file"
+                      type="text"
                       id="thumbNail"
                       name="thumbNail"
                       onChange={handleInputChange}
                       accept="image/*"
                       required={!isEditing}
                     />  
-                  </div> */}
-                  <div>
+                  </div> 
+                  {/* <div>
                 <Label htmlFor="thumbnail">Thumbnail</Label>
                 <UploadButton
                 endpoint='imageUploader'
@@ -352,7 +345,7 @@ export default function CourseManagement(): JSX.Element {
                   alert(`ERROR! ${error.message}`);
                 }}
                 />
-              </div>
+              </div> */}
                 {/* Rest of the form fields remain the same, just with proper event typing */}
                 {/* ... */}
               </div>
