@@ -52,9 +52,9 @@ export async function POST(req: NextRequest) {
     }
 
     // Upload thumbnail to cloudinary
-    const thumbNailResult = await cloudinary.uploader.upload(thumbNailFile, {
-      folder: 'courses',
-    });
+    // const thumbNailResult = await cloudinary.uploader.upload(thumbNailFile, {
+    //   folder: 'courses',
+    // });
 
     // Create a new course
     const newCourse = new Course({
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
       description,
       instructor,
       duration,
-      thumbNail: thumbNailResult.secure_url,
+      thumbNail: thumbNailFile,
       courseLink,
       githubCode,
       links,
