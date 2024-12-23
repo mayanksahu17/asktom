@@ -198,6 +198,8 @@ export default function CourseManagement(): JSX.Element {
 
   const handleEdit = (course: Course): void => {
     setIsEditing(true);
+    console.log(course);
+    
     setSelectedCourse(course);
     setFormData({
       courseName: course.courseName,

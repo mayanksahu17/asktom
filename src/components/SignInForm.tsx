@@ -18,7 +18,14 @@ export function SignInForm() {
     // Here you would typically validate the credentials against a backend
     // For this example, we'll just redirect to the dashboard
     console.log('Sign in attempt:', { name, email, password })
-    router.push('/admin/dashboard')
+    if(name == "admin" && email == "admin@ed.com" && password == "admin@17"){
+      router.push('/admin/dashboard')
+
+    }else{
+      alert("plaese enter valid credencials")
+
+    }
+
   }
 
   return (
@@ -57,7 +64,7 @@ export function SignInForm() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button type="submit" onClick={()=>{router.push('/admin/dashboard')}} className="w-full">Sign In</Button>
+          <Button type="submit" onClick={handleSubmit} className="w-full">Sign In</Button>
         </CardFooter>
       </form>
     </Card>

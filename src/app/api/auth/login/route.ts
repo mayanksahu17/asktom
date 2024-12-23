@@ -48,12 +48,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
       data: user
     });
 
-    response.headers.set('Set-Cookie', cookie.serialize('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 3600,
-      path: '/',
-    }));
+    // response.headers.set('Set-Cookie', cookie.serialize('token', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production',
+    //   maxAge: 3600,
+    //   path: '/',
+    // }));
 
     return response;
   } catch (error: any) {

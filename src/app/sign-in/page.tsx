@@ -31,7 +31,8 @@ export default function LoginPage() {
 
       if (response.ok) {
         // Redirect to dashboard or home page on successful login
-        router.push('/dashboard')
+        localStorage.setItem("token", data.token)
+        router.push('/')
       } else {
         setError(data.message || 'An error occurred during login.')
       }
