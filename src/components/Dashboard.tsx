@@ -52,6 +52,7 @@ export function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses?.map((course: any) => (
             <CourseCard
+              id={course._id}
               key={course.courseId + 2  }
               courseId={course.courseId}
               courseName={course.courseName}
